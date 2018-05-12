@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DBArchiveModelStoreContainer" CdmEntityContainer="DBArchiveEntities2">
+    <EntitySetMapping Name="tblDocumento">
+      <EntityTypeMapping TypeName="DBArchiveModel.tblDocumento">
+        <MappingFragment StoreEntitySet="tblDocumento">
+          <ScalarProperty Name="id_Documento" ColumnName="id_Documento" />
+          <ScalarProperty Name="Data" ColumnName="Data" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="tblUsuario_id_Usuario" ColumnName="tblUsuario_id_Usuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUsuario">
+      <EntityTypeMapping TypeName="DBArchiveModel.tblUsuario">
+        <MappingFragment StoreEntitySet="tblUsuario">
+          <ScalarProperty Name="id_Usuario" ColumnName="id_Usuario" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

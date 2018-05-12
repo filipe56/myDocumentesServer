@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBArchiveModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tblDocumento">
+    <Key>
+      <PropertyRef Name="id_Documento" />
+    </Key>
+    <Property Name="id_Documento" Type="Int32" Nullable="false" />
+    <Property Name="Data" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Nome" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tblUsuario_id_Usuario" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tblUsuario" Relationship="Self.FK_tblUsuariotblDocumento" FromRole="tblDocumento" ToRole="tblUsuario" />
+  </EntityType>
+  <EntityType Name="tblUsuario">
+    <Key>
+      <PropertyRef Name="id_Usuario" />
+    </Key>
+    <Property Name="id_Usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Telefone" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblDocumento" Relationship="Self.FK_tblUsuariotblDocumento" FromRole="tblUsuario" ToRole="tblDocumento" />
+  </EntityType>
+  <Association Name="FK_tblUsuariotblDocumento">
+    <End Role="tblUsuario" Type="Self.tblUsuario" Multiplicity="1" />
+    <End Role="tblDocumento" Type="Self.tblDocumento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUsuario">
+        <PropertyRef Name="id_Usuario" />
+      </Principal>
+      <Dependent Role="tblDocumento">
+        <PropertyRef Name="tblUsuario_id_Usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DBArchiveEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tblDocumento" EntityType="Self.tblDocumento" />
+    <EntitySet Name="tblUsuario" EntityType="Self.tblUsuario" />
+    <AssociationSet Name="FK_tblUsuariotblDocumento" Association="Self.FK_tblUsuariotblDocumento">
+      <End Role="tblUsuario" EntitySet="tblUsuario" />
+      <End Role="tblDocumento" EntitySet="tblDocumento" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
